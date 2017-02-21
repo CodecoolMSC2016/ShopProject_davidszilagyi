@@ -1,24 +1,17 @@
 package bolt;
 
-import java.util.Hashtable;
-
 public class Bolt {
 	private String nev;
 	private String cim;
 	private String tulajdonos;
-	private Hashtable tejpult;
+	private Tej[] tejpult;
+	private int flag;
 
-	public Bolt(String nev, String cim, String tulajdonos, Hashtable tejpult) {
+	public Bolt(String nev, String cim, String tulajdonos, Tej[] tejpult) {
 		this.nev = nev;
 		this.cim = cim;
 		this.tulajdonos = tulajdonos;
 		this.tejpult = tejpult;
-	}
-
-	public Bolt(String nev, String cim, String tulajdonos) {
-		this.nev = nev;
-		this.cim = cim;
-		this.tulajdonos = tulajdonos;
 	}
 
 	public String getNev() {
@@ -34,57 +27,16 @@ public class Bolt {
 	}
 
 	public boolean vanMegTej() {
-		return true;
+		return tejpult.length > 0;
 	}
 
-	public Tej vasarolTej(long vonalKod) {
+	public Tej vasarolTej(Tej m) {
+		if (vanMegTej()) {
+			Tej tej = tejpult[0];
+			tejpult = new Tej[tejpult.length - 1];
+			return tej;
+		}
+		System.out.println("Elfogyott a tej");
 		return null;
-	}
-
-	public void feltoltTej(Tej m) {
-	}
-
-	public class BoltBejegyzes {
-		private Tej t;
-		private int mennyiseg;
-		private int ar;
-
-		public BoltBejegyzes(Tej t, int mennyiseg, int ar) {
-			this.t = t;
-			this.mennyiseg = mennyiseg;
-			this.ar = ar;
-		}
-
-		public Tej getT() {
-			return null;
-		}
-
-		public void setT(Tej t) {
-			this.t = t;
-		}
-
-		public int getMennyiseg() {
-			return mennyiseg;
-		}
-
-		public void setMennyiseg(int mennyiseg) {
-			this.mennyiseg = mennyiseg;
-		}
-
-		public void adMennyiseg(int mennyiseg) {
-			mennyiseg += mennyiseg;
-		}
-
-		public void levonMennyiseg(int mennyiseg) {
-			mennyiseg -= mennyiseg;
-		}
-
-		public int getAr() {
-			return ar;
-		}
-
-		public void setAr(int ar) {
-			this.ar = ar;
-		}
 	}
 }

@@ -18,8 +18,7 @@ public class Tej {
 	}
 
 	public boolean joMeg() {
-		Date date = new Date();
-		return date.before(getSzavatossagiIdo());
+		return new Date().before(getSzavatossagiIdo());
 	}
 
 	public int getUrtartalom() {
