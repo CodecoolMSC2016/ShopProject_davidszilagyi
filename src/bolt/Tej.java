@@ -44,6 +44,7 @@ public class Tej {
 
 	@Override
 	public String toString() {
-		return null;
+		return String.format("Gyártó: %s%nZsírtartalom: %.1f%nŰrtartalom: %d%n Szavatossági Idő: %tD%n Ár: %d%n",
+				getGyarto(), getZsirtartalom(), getUrtartalom(), getSzavatossagiIdo(), getAr());
 	}
 }
