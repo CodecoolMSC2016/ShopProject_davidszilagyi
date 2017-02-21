@@ -1,13 +1,14 @@
 package bolt;
 
+import java.util.Vector;
+
 public class Bolt {
 	private String nev;
 	private String cim;
 	private String tulajdonos;
-	private Tej[] tejpult;
-	private int flag;
+	private Vector tejpult;
 
-	public Bolt(String nev, String cim, String tulajdonos, Tej[] tejpult) {
+	public Bolt(String nev, String cim, String tulajdonos, Vector tejpult) {
 		this.nev = nev;
 		this.cim = cim;
 		this.tulajdonos = tulajdonos;
