@@ -13,7 +13,6 @@ public abstract class Tej {
 	protected String gyarto;
 	protected Date szavatossagiIdo;
 	protected double zsirtartalom;
-	protected long ar;
 
 	public Tej(long vonalKod, int urtartalom, String gyarto, Date szavatossagiIdo, double zsirtartalom) {
 		this.vonalKod = vonalKod;
@@ -47,13 +46,9 @@ public abstract class Tej {
 		return zsirtartalom;
 	}
 
-	public long getAr() {
-		return ar;
-	}
-
 	@Override
 	public String toString() {
-		return String.format("Gyártó: %s%nZsírtartalom: %.1f%nŰrtartalom: %d%n Szavatossági Idő: %tD%n Ár: %d%n",
-				getGyarto(), getZsirtartalom(), getUrtartalom(), getSzavatossagiIdo(), getAr());
+		return String.format("Gyártó: %s%nZsírtartalom: %.1f%nŰrtartalom: %d%n Szavatossági Idő: %tD%n", getGyarto(),
+				getZsirtartalom(), getUrtartalom(), getSzavatossagiIdo());
 	}
 }
