@@ -2,29 +2,27 @@ package bolt;
 
 import java.util.Date;
 
-public abstract class Tej {
+public abstract class Tej extends Elelmiszer {
 	public final int LITER;
 	public final int FELLITER;
 	public final int POHAR;
 	public final double ZSIROS;
 	public final double FELZSIROS;
-	protected long vonalKod;
 	protected int urtartalom;
-	protected String gyarto;
-	protected Date szavatossagiIdo;
 	protected double zsirtartalom;
 
 	public Tej(long vonalKod, int urtartalom, String gyarto, Date szavatossagiIdo, double zsirtartalom) {
+		super(vonalKod, gyarto, szavatossagiIdo);
 		this.urtartalom = urtartalom;
-		this.gyarto = gyarto;
-		this.szavatossagiIdo = szavatossagiIdo;
 		this.zsirtartalom = zsirtartalom;
 	}
 
+	@Override
 	public long getVonalKod() {
 		return vonalKod;
 	}
 
+	@Override
 	public boolean joMeg() {
 		return new Date().before(getSzavatossagiIdo());
 	}
@@ -33,10 +31,12 @@ public abstract class Tej {
 		return urtartalom;
 	}
 
+	@Override
 	public String getGyarto() {
 		return gyarto;
 	}
 
+	@Override
 	public Date getSzavatossagiIdo() {
 		return szavatossagiIdo;
 	}

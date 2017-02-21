@@ -2,18 +2,13 @@ package bolt;
 
 import java.util.Date;
 
-public class Sajt {
+public class Sajt extends Elelmiszer {
 	protected double suly;
 	protected double zsirtartalom;
-	protected long vonalKod;
-	protected String gyarto;
-	protected Date szavatossagiIdo;
 
 	public Sajt(long vonalKod, double suly, String gyarto, Date szavatossagiIdo, double zsirtartalom) {
-		this.vonalKod = vonalKod;
+		super(vonalKod, gyarto, szavatossagiIdo);
 		this.suly = suly;
-		this.gyarto = gyarto;
-		this.szavatossagiIdo = szavatossagiIdo;
 		this.zsirtartalom = zsirtartalom;
 	}
 
@@ -31,18 +26,22 @@ public class Sajt {
 				getZsirtartalom());
 	}
 
+	@Override
 	public boolean joMeg() {
 		return new Date().before(getSzavatossagiIdo());
 	}
 
+	@Override
 	public Date getSzavatossagiIdo() {
 		return szavatossagiIdo;
 	}
 
+	@Override
 	public long getVonalKod() {
 		return vonalKod;
 	}
 
+	@Override
 	public String getGyarto() {
 		return gyarto;
 	}
