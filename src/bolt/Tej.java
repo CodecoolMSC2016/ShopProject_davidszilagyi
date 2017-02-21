@@ -3,24 +3,22 @@ package bolt;
 import java.util.Date;
 
 public class Tej {
-	private long vonalKod;
-	private final int LITER;
-	private final int FELLITER;
-	private final int POHAR;
-	private final double ZSIROS;
-	private final double FELZSIROS;
-	private int urtartalom;
-	private String gyarto;
-	private Date szavatossagiIdo;
-	private double zsirtartalom;
-	private long ar;
+	public final int LITER;
+	public final int FELLITER;
+	public final int POHAR;
+	public final double ZSIROS;
+	public final double FELZSIROS;
+	protected long vonalKod;
+	protected int urtartalom;
+	protected String gyarto;
+	protected Date szavatossagiIdo;
+	protected double zsirtartalom;
 
-	public Tej(int urtartalom, String gyarto, Date szavatossagiIdo, double zsirtartalom, long ar) {
+	public Tej(int urtartalom, String gyarto, Date szavatossagiIdo, double zsirtartalom) {
 		this.urtartalom = urtartalom;
 		this.gyarto = gyarto;
 		this.szavatossagiIdo = szavatossagiIdo;
 		this.zsirtartalom = zsirtartalom;
-		this.ar = ar;
 	}
 
 	public long getVonalKod() {
@@ -47,13 +45,9 @@ public class Tej {
 		return zsirtartalom;
 	}
 
-	public long getAr() {
-		return ar;
-	}
-
 	@Override
 	public String toString() {
-		return String.format("Gyártó: %s%nŰrtartalom: %d%nZsírtartalom: %f%nSzavatossagi idő: %tD%nÁr: %d", getGyarto(),
-				getUrtartalom(), getZsirtartalom(), getSzavatossagiIdo(), getAr());
+		return String.format("Gyártó: %s%nŰrtartalom: %d%nZsírtartalom: %f%nSzavatossagi idő: %tD", getGyarto(),
+				getUrtartalom(), getZsirtartalom(), getSzavatossagiIdo());
 	}
 }

@@ -43,7 +43,7 @@ public class Bolt {
 			Iterator tejpultIterator = tejpult.entrySet().iterator();
 			while (tejpultIterator.hasNext()) {
 				Tej temp = (Tej) tejpultIterator.next();
-				if (temp.getVonalKod() == vonalkod) {
+				if (temp.getVonalKod() == vonalKod) {
 					tejpultIterator.remove();
 					return temp;
 				}
@@ -55,5 +55,49 @@ public class Bolt {
 
 	public void feltoltTej(Tej m) {
 		tejpult.put(m.getVonalKod(), m);
+	}
+
+	public class BoltBejegyzes {
+		private Tej t;
+		private int mennyiseg;
+		private int ar;
+
+		public BoltBejegyzes(Tej t, int mennyiseg, int ar) {
+			this.t = t;
+			this.mennyiseg = mennyiseg;
+			this.ar = ar;
+		}
+
+		public Tej getT() {
+			return t;
+		}
+
+		public void setT(Tej t) {
+			this.t = t;
+		}
+
+		public int getMennyiseg() {
+			return mennyiseg;
+		}
+
+		public void setMennyiseg(int mennyiseg) {
+			this.mennyiseg = mennyiseg;
+		}
+
+		public void adMennyiseg(int mennyiseg) {
+			this.mennyiseg += mennyiseg;
+		}
+
+		public void levonMennyiseg(int mennyiseg) {
+			this.mennyiseg -= mennyiseg;
+		}
+
+		public int getAr() {
+			return ar;
+		}
+
+		public void setAr(int ar) {
+			this.ar = ar;
+		}
 	}
 }
