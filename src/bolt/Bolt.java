@@ -1,13 +1,14 @@
 package bolt;
 
+import java.util.Vector;
+
 public class Bolt {
 	private String nev;
 	private String cim;
 	private String tulajdonos;
-	private Tej[] tejpult;
-	private int flag;
+	private Vector tejpult;
 
-	public Bolt(String nev, String cim, String tulajdonos, Tej[] tejpult) {
+	public Bolt(String nev, String cim, String tulajdonos, Vector tejpult) {
 		this.nev = nev;
 		this.cim = cim;
 		this.tulajdonos = tulajdonos;
@@ -33,13 +34,12 @@ public class Bolt {
 	}
 
 	public boolean vanMegTej() {
-		return tejpult.length > 0;
+		return tejpult.size() > 0;
 	}
 
 	public Tej vasarolTej(Tej m) {
 		if (vanMegTej()) {
-			Tej tej = tejpult[0];
-			tejpult = new Tej[tejpult.length - 1];
+			Tej tej = (Tej) tejpult.get(0);
 			return tej;
 		}
 		System.out.println("Elfogyott a tej");
@@ -47,7 +47,6 @@ public class Bolt {
 	}
 
 	public void feltoltTej(Tej m) {
-		tejpult = new Tej[tejpult.length + 1];
-		tejpult[tejpult.length - 1] = m;
+		tejpult.add(m);
 	}
 }
