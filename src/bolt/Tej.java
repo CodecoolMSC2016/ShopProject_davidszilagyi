@@ -3,6 +3,12 @@ package bolt;
 import java.util.Date;
 
 public class Tej {
+	private long vonalKod;
+	private final int LITER;
+	private final int FELLITER;
+	private final int POHAR;
+	private final double ZSIROS;
+	private final double FELZSIROS;
 	private int urtartalom;
 	private String gyarto;
 	private Date szavatossagiIdo;
@@ -15,6 +21,10 @@ public class Tej {
 		this.szavatossagiIdo = szavatossagiIdo;
 		this.zsirtartalom = zsirtartalom;
 		this.ar = ar;
+	}
+
+	public long getVonalKod() {
+		return vonalKod;
 	}
 
 	public boolean joMeg() {
