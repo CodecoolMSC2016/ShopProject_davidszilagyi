@@ -44,6 +44,7 @@ public class Tej {
 
 	@Override
 	public String toString() {
-		return null;
+		return String.format("Gyártó: %s%nŰrtartalom: %d%nZsírtartalom: %f%nSzavatossagi idő: %tD%nÁr: %d", getGyarto(),
+				getUrtartalom(), getZsirtartalom(), getSzavatossagiIdo(), getAr());
 	}
 }
