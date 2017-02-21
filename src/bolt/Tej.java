@@ -14,7 +14,7 @@ public class Tej {
 	protected Date szavatossagiIdo;
 	protected double zsirtartalom;
 
-	public Tej(int urtartalom, String gyarto, Date szavatossagiIdo, double zsirtartalom) {
+	public Tej(long vonalKod, int urtartalom, String gyarto, Date szavatossagiIdo, double zsirtartalom) {
 		this.urtartalom = urtartalom;
 		this.gyarto = gyarto;
 		this.szavatossagiIdo = szavatossagiIdo;
