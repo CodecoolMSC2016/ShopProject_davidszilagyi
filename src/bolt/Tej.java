@@ -2,32 +2,48 @@ package bolt;
 
 import java.util.Date;
 
-public abstract class Tej extends Elelmiszer {
-	public final int LITER;
-	public final int FELLITER;
-	public final int POHAR;
-	public final double ZSIROS;
-	public final double FELZSIROS;
-	protected int urtartalom;
-	protected double zsirtartalom;
+public class Tej {
+	private int urtartalom;
+	private String gyarto;
+	private Date szavatossagiIdo;
+	private double zsirtartalom;
+	private long ar;
 
-	public Tej(long vonalKod, int urtartalom, String gyarto, Date szavatossagiIdo, double zsirtartalom) {
-		super(vonalKod, gyarto, szavatossagiIdo);
+	public Tej(int urtartalom, String gyarto, Date szavatossagiIdo, double zsirtartalom, long ar) {
 		this.urtartalom = urtartalom;
+		this.gyarto = gyarto;
+		this.szavatossagiIdo = szavatossagiIdo;
 		this.zsirtartalom = zsirtartalom;
+		this.ar = ar;
+	}
+
+	public boolean joMeg() {
+		Date date = new Date();
+		return date.before(getSzavatossagiIdo());
 	}
 
 	public int getUrtartalom() {
 		return urtartalom;
 	}
 
+	public String getGyarto() {
+		return gyarto;
+	}
+
+	public Date getSzavatossagiIdo() {
+		return szavatossagiIdo;
+	}
+
 	public double getZsirtartalom() {
 		return zsirtartalom;
 	}
 
+	public long getAr() {
+		return ar;
+	}
+
 	@Override
 	public String toString() {
-		return String.format("Gyártó: %s%nZsírtartalom: %.1f%nŰrtartalom: %d%n Szavatossági Idő: %tD%n", getGyarto(),
-				getZsirtartalom(), getUrtartalom(), getSzavatossagiIdo());
+		return null;
 	}
 }
