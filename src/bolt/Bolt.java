@@ -5,6 +5,8 @@ import java.util.Hashtable;
 import bolt.aruk.Elelmiszer;
 import bolt.aruk.Sajt;
 import bolt.aruk.Tej;
+import bolt.kivetel.NemLetezoAruKivetel;
+import bolt.kivetel.TulSokLevonasKivetel;
 
 public class Bolt {
 	private String nev;
@@ -38,13 +40,18 @@ public class Bolt {
 		return tulajdonos;
 	}
 
-	public boolean vanMegAdottAru(Class<?> c) {
-		for (Class<? extends Elelmiszer> key : elelmiszerpult.keySet()) {
-			if (c.isAssignableFrom(key)) {
-				return true;
+	public boolean vanMegAdottAru(Class<?> c) throws NemLetezoAruKivetel {
+		try {
+			for (Class<? extends Elelmiszer> key : elelmiszerpult.keySet()) {
+				if (c.isAssignableFrom(key)) {
+					return true;
+				}
 			}
+			throw new NemLetezoAruKivetel("Nem létező arú");
+		} catch (Exception NemLetezoAruKivetel) {
+			NemLetezoAruKivetel.getMessage();
+			return false;
 		}
-		return false;
 
 	}
 
@@ -89,12 +96,20 @@ public class Bolt {
 		}
 	}
 
-	public void vasarolElelmiszert(long vonalKod, long mennyiseg) {
-		for (Class<? extends Elelmiszer> key : elelmiszerpult.keySet()) {
-			BoltBejegyzes boltBejegyzes = elelmiszerpult.get(key);
-			if ((boltBejegyzes.getElelmiszer().getVonalKod()) == vonalKod) {
-				boltBejegyzes.levonMennyiseg(mennyiseg);
+	public void vasarolElelmiszert(long vonalKod, long mennyiseg) throws TulSokLevonasKivetel {
+		try {
+			for (Class<? extends Elelmiszer> key : elelmiszerpult.keySet()) {
+				BoltBejegyzes boltBejegyzes = elelmiszerpult.get(key);
+				if ((boltBejegyzes.getElelmiszer().getVonalKod()) == vonalKod) {
+					if (boltBejegyzes.getMennyiseg() < mennyiseg) {
+						throw new TulSokLevonasKivetel("Nincs ennyi mennyiség!");
+					} else {
+						boltBejegyzes.levonMennyiseg(mennyiseg);
+					}
+				}
 			}
+		} catch (Exception TulSokLevonasKivetel) {
+			TulSokLevonasKivetel.getMessage();
 		}
 	}
 
