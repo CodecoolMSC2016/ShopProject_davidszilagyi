@@ -2,6 +2,8 @@ package bolt;
 
 import java.util.Date;
 
+import bolt.aruk.Tej;
+
 public abstract class TejFactory {
 	public abstract Tej ujTartosTej(long vonalKod, int urtartalom, String gyarto, Date szavatossagiIdo,
 			double zsirtartalom, long ar);

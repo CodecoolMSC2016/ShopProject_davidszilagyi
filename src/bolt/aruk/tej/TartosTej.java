@@ -1,8 +1,8 @@
-package bolt.tej;
+package bolt.aruk.tej;
 
 import java.util.Date;
 
-import bolt.Tej;
+import bolt.aruk.Tej;
 
 public class TartosTej extends Tej {
 	public TartosTej(long vonalKod, int urtartalom, String gyarto, Date szavatossagiIdo, double zsirtartalom) {

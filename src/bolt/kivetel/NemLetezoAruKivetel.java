@@ -1,5 +1,7 @@
 package bolt;
 
+import bolt.BoltKivetel;
+
 public class NemLetezoAruKivetel extends BoltKivetel {
 	public NemLetezoAruKivetel(String message) {
 		super(message);
