@@ -3,11 +3,6 @@ package bolt.aruk;
 import java.util.Date;
 
 public abstract class Tej extends Elelmiszer {
-	public final int LITER;
-	public final int FELLITER;
-	public final int POHAR;
-	public final double ZSIROS;
-	public final double FELZSIROS;
 	protected int urtartalom;
 	protected double zsirtartalom;
 
