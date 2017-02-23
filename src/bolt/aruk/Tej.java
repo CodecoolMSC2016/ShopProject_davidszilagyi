@@ -12,7 +12,7 @@ public abstract class Tej extends Elelmiszer {
 		super(vonalKod, gyarto, szavatossagiIdo);
 		this.urtartalom = urtartalom;
 		this.zsirtartalom = zsirtartalom;
-		this.sdf = new SimpleDateFormat("DD/MM/YYYY");
+		this.sdf = new SimpleDateFormat("yyyy/MM/dd");
 	}
 
 	@Override

@@ -12,7 +12,7 @@ public class Sajt extends Elelmiszer {
 		super(vonalKod, gyarto, szavatossagiIdo);
 		this.suly = suly;
 		this.zsirtartalom = zsirtartalom;
-		this.sdf = new SimpleDateFormat("DD/MM/YYYY");
+		this.sdf = new SimpleDateFormat("yyyy/MM/dd");
 	}
 
 	public double getSuly() {
