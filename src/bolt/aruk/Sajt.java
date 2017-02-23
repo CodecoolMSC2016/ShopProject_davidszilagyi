@@ -25,8 +25,8 @@ public class Sajt extends Elelmiszer {
 
 	@Override
 	public String toString() {
-		return String.format("Gyártó: %s%nSúly: %.2f%nZsírtartalom: %.2f%nSzavatossagi idő: %s", getGyarto(), getSuly(),
-				getZsirtartalom(), sdf.format(getSzavatossagiIdo()));
+		return String.format("Gyártó: %s%nSúly: %.2f%nZsírtartalom: %.2f%nSzavatossagi idő: %s%nVonalKód: %d",
+				getGyarto(), getSuly(), getZsirtartalom(), sdf.format(getSzavatossagiIdo()), getVonalKod());
 	}
 
 	@Override

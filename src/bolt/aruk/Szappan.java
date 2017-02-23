@@ -26,6 +26,6 @@ public class Szappan extends Aru {
 
 	@Override
 	public String toString() {
-		return String.format("Gyártó: %s%nMosohatás: %s", getGyarto(), getMosohatas());
+		return String.format("Gyártó: %s%nMosohatás: %s%nVonalKód: %d", getGyarto(), getMosohatas(), getVonalKod());
 	}
 }
