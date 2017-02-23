@@ -6,11 +6,13 @@ import java.util.Date;
 public class Sajt extends Elelmiszer {
 	protected double suly;
 	protected double zsirtartalom;
+	protected SimpleDateFormat sdf;
 
 	public Sajt(long vonalKod, double suly, String gyarto, Date szavatossagiIdo, double zsirtartalom) {
 		super(vonalKod, gyarto, szavatossagiIdo);
 		this.suly = suly;
 		this.zsirtartalom = zsirtartalom;
+		this.sdf = new SimpleDateFormat("DD/MM/YYYY");
 	}
 
 	public double getSuly() {
@@ -23,7 +25,6 @@ public class Sajt extends Elelmiszer {
 
 	@Override
 	public String toString() {
-		SimpleDateFormat sdf = new SimpleDateFormat("DD/MM/YYYY");
 		return String.format("Gyártó: %s%nSúly: %.2f%nZsírtartalom: %.2f%nSzavatossagi idő: %s", getGyarto(), getSuly(),
 				getZsirtartalom(), sdf.format(getSzavatossagiIdo()));
 	}

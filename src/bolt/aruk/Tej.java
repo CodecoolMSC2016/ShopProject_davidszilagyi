@@ -6,11 +6,13 @@ import java.util.Date;
 public abstract class Tej extends Elelmiszer {
 	protected int urtartalom;
 	protected double zsirtartalom;
+	protected SimpleDateFormat sdf;
 
 	public Tej(long vonalKod, int urtartalom, String gyarto, Date szavatossagiIdo, double zsirtartalom) {
 		super(vonalKod, gyarto, szavatossagiIdo);
 		this.urtartalom = urtartalom;
 		this.zsirtartalom = zsirtartalom;
+		this.sdf = new SimpleDateFormat("DD/MM/YYYY");
 	}
 
 	@Override
@@ -43,7 +45,6 @@ public abstract class Tej extends Elelmiszer {
 
 	@Override
 	public String toString() {
-		SimpleDateFormat sdf = new SimpleDateFormat("DD/MM/YYYY");
 		return String.format("Gyártó: %s%nŰrtartalom: %d%nZsírtartalom: %.2f%nSzavatossagi idő: %s", getGyarto(),
 				getUrtartalom(), getZsirtartalom(), sdf.format(getSzavatossagiIdo()));
 	}
