@@ -1,4 +1,4 @@
-package bolt;
+package bolt.kivetel;
 
 import bolt.BoltKivetel;
 
