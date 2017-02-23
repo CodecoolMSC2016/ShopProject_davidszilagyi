@@ -1,5 +1,6 @@
 package bolt.aruk;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public abstract class Tej extends Elelmiszer {
@@ -42,7 +43,8 @@ public abstract class Tej extends Elelmiszer {
 
 	@Override
 	public String toString() {
-		return String.format("Gyártó: %s%nŰrtartalom: %d%nZsírtartalom: %.2f%nSzavatossagi idő: %tD", getGyarto(),
-				getUrtartalom(), getZsirtartalom(), getSzavatossagiIdo());
+		SimpleDateFormat sdf = new SimpleDateFormat("DD/MM/YYYY");
+		return String.format("Gyártó: %s%nŰrtartalom: %d%nZsírtartalom: %.2f%nSzavatossagi idő: %s", getGyarto(),
+				getUrtartalom(), getZsirtartalom(), sdf.format(getSzavatossagiIdo()));
 	}
 }
