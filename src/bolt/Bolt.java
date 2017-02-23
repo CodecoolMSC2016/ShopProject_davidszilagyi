@@ -80,12 +80,12 @@ public class Bolt {
 		for (Class<? extends Aru> key : pult.keySet()) {
 			BoltBejegyzes boltBejegyzes = pult.get(key);
 			if ((boltBejegyzes.getAru().getVonalKod()) == vonalKod) {
-				boltBejegyzes.setMennyiseg(mennyiseg);
+				boltBejegyzes.adMennyiseg(mennyiseg);
 			}
 		}
 	}
 
-	public void feltoltUjElelmiszerrel(Aru a, long mennyiseg, long ar) {
+	public void feltoltUjAruval(Aru a, long mennyiseg, long ar) {
 		BoltBejegyzes boltBejegyzes = new BoltBejegyzes(a, mennyiseg, ar);
 		pult.put(a.getClass(), boltBejegyzes);
 	}
@@ -99,7 +99,7 @@ public class Bolt {
 		}
 	}
 
-	public void vasarolElelmiszert(long vonalKod, long mennyiseg) throws TulSokLevonasKivetel {
+	public void vasarolArut(long vonalKod, long mennyiseg) throws TulSokLevonasKivetel {
 		try {
 			for (Class<? extends Aru> key : pult.keySet()) {
 				BoltBejegyzes boltBejegyzes = pult.get(key);
