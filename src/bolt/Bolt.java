@@ -43,7 +43,7 @@ public class Bolt {
 		return pult;
 	}
 
-	public boolean vanMegAdottAru(Class<?> c) throws NemLetezoAruKivetel {
+	public boolean vanMegAdottAru(Class<?> c) {
 		try {
 			for (Class<? extends Aru> key : pult.keySet()) {
 				if (c.isAssignableFrom(key)) {
@@ -52,10 +52,9 @@ public class Bolt {
 			}
 			throw new NemLetezoAruKivetel("Nem létező áru");
 		} catch (Exception NemLetezoAruKivetel) {
-			NemLetezoAruKivetel.getMessage();
+			System.out.println(NemLetezoAruKivetel.getMessage());
 			return false;
 		}
-
 	}
 
 	public boolean vanMegTej() {
@@ -99,7 +98,7 @@ public class Bolt {
 		}
 	}
 
-	public void vasarolArut(long vonalKod, long mennyiseg) throws TulSokLevonasKivetel {
+	public void vasarolArut(long vonalKod, long mennyiseg) {
 		try {
 			for (Class<? extends Aru> key : pult.keySet()) {
 				BoltBejegyzes boltBejegyzes = pult.get(key);
@@ -112,7 +111,7 @@ public class Bolt {
 				}
 			}
 		} catch (Exception TulSokLevonasKivetel) {
-			TulSokLevonasKivetel.getMessage();
+			System.out.println(TulSokLevonasKivetel.getMessage());
 		}
 	}
 

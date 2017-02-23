@@ -89,7 +89,7 @@ public class Tester extends BoltFactory {
 		}
 	}
 
-	public void vasarol(long vonalKod, long mennyiseg) throws TulSokLevonasKivetel {
+	public void vasarol(long vonalKod, long mennyiseg) {
 		boltCC.vasarolArut(vonalKod, mennyiseg);
 	}
 
