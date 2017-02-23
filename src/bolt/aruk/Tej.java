@@ -42,7 +42,7 @@ public abstract class Tej extends Elelmiszer {
 
 	@Override
 	public String toString() {
-		return String.format("Gyártó: %s%nŰrtartalom: %d%nZsírtartalom: %f%nSzavatossagi idő: %tD", getGyarto(),
+		return String.format("Gyártó: %s%nŰrtartalom: %d%nZsírtartalom: %.2f%nSzavatossagi idő: %tD", getGyarto(),
 				getUrtartalom(), getZsirtartalom(), getSzavatossagiIdo());
 	}
 }
