@@ -79,11 +79,7 @@ public class Bolt {
 	public void feltoltAruval(Long vonalKod, long mennyiseg) {
 		try {
 			if (letezoVonalKod(vonalKod)) {
-				for (Long key : pult.keySet()) {
-					if ((pult.get(key).getAru().getVonalKod()).equals(vonalKod)) {
-						pult.get(key).adMennyiseg(mennyiseg);
-					}
-				}
+				pult.get(vonalKod).adMennyiseg(mennyiseg);
 			} else {
 				throw new NemLetezoAruKivetel(String.format("Nincs ilyen vonalkóddal ellátott termék: %d", vonalKod));
 			}
@@ -109,12 +105,7 @@ public class Bolt {
 	public void torolArut(Long vonalKod) {
 		try {
 			if (letezoVonalKod(vonalKod)) {
-				for (Long key : pult.keySet()) {
-					if ((pult.get(key).getAru().getVonalKod()).equals(vonalKod)) {
-						pult.remove(key);
-						break;
-					}
-				}
+				pult.remove(vonalKod);
 			} else {
 				throw new NemLetezoAruKivetel(String.format("Nincs ilyen vonalkóddal ellátott termék: %d", vonalKod));
 			}
@@ -126,16 +117,12 @@ public class Bolt {
 	public void vasarolArut(Long vonalKod, long mennyiseg) {
 		try {
 			if (letezoVonalKod(vonalKod)) {
-				for (Long key : pult.keySet()) {
-					if ((pult.get(key).getAru().getVonalKod()).equals(vonalKod)) {
-						if (pult.get(key).getMennyiseg() < mennyiseg) {
-							throw new TulSokLevonasKivetel(
-									String.format("Nincs ennyi mennyiség: %s (Vonalkód: %d - Készleten: %s)", mennyiseg,
-											vonalKod, pult.get(key).getMennyiseg()));
-						} else {
-							pult.get(key).levonMennyiseg(mennyiseg);
-						}
-					}
+				if (pult.get(vonalKod).getMennyiseg() < mennyiseg) {
+					throw new TulSokLevonasKivetel(
+							String.format("Nincs ennyi mennyiség: %s (Vonalkód: %d - Készleten: %s)", mennyiseg,
+									vonalKod, pult.get(vonalKod).getMennyiseg()));
+				} else {
+					pult.get(vonalKod).levonMennyiseg(mennyiseg);
 				}
 			} else {
 				throw new NemLetezoAruKivetel(String.format("Nincs ilyen vonalkóddal ellátott termék: %d", vonalKod));

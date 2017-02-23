@@ -11,8 +11,8 @@ public class TesterMain {
 		tester.addAru();
 		// tester.vaneAru();
 		// tester.printAll();
-		tester.torolAru((long) 23456);
-		// tester.vasarol((long) 23456, 1000);
+		// tester.torolAru((long) 23456);
+		// tester.vasarol((long) 23456, 1);
 		// tester.feltoltArut((long) 23456, 3);
 		// tester.printAll();
 	}
