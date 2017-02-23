@@ -69,7 +69,7 @@ public class Bolt {
 
 	public boolean vanMegSajt() {
 		for (Class<? extends Aru> key : pult.keySet()) {
-			if (key.equals((Sajt.class))) {
+			if (Sajt.class.isAssignableFrom(key)) {
 				return (pult.get(key).getMennyiseg()) > 0;
 			}
 		}
