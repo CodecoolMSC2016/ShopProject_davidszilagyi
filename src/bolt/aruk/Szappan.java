@@ -5,13 +5,13 @@ import bolt.Aru;
 public class Szappan extends Aru {
 	protected char mosohatas;
 
-	public Szappan(long vonalKod, String gyarto, char mosohatas) {
+	public Szappan(Long vonalKod, String gyarto, char mosohatas) {
 		super(vonalKod, gyarto);
 		this.mosohatas = mosohatas;
 	}
 
 	@Override
-	public long getVonalKod() {
+	public Long getVonalKod() {
 		return vonalKod;
 	}
 

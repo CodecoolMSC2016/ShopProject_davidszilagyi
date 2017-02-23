@@ -6,7 +6,7 @@ public class Sajt extends Elelmiszer {
 	protected double suly;
 	protected double zsirtartalom;
 
-	public Sajt(long vonalKod, double suly, String gyarto, Date szavatossagiIdo, double zsirtartalom) {
+	public Sajt(Long vonalKod, double suly, String gyarto, Date szavatossagiIdo, double zsirtartalom) {
 		super(vonalKod, gyarto, szavatossagiIdo);
 		this.suly = suly;
 		this.zsirtartalom = zsirtartalom;
@@ -37,7 +37,7 @@ public class Sajt extends Elelmiszer {
 	}
 
 	@Override
-	public long getVonalKod() {
+	public Long getVonalKod() {
 		return vonalKod;
 	}
 

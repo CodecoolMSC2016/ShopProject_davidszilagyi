@@ -10,7 +10,7 @@ public abstract class Elelmiszer extends Aru {
 	protected Date szavatossagiIdo;
 	protected SimpleDateFormat sdf;
 
-	public Elelmiszer(long vonalKod, String gyarto, Date szavatossagiIdo) {
+	public Elelmiszer(Long vonalKod, String gyarto, Date szavatossagiIdo) {
 		super(vonalKod, gyarto);
 		this.szavatossagiIdo = szavatossagiIdo;
 		this.sdf = new SimpleDateFormat("yyyy/MM/dd");

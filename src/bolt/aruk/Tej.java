@@ -6,14 +6,14 @@ public abstract class Tej extends Elelmiszer {
 	protected int urtartalom;
 	protected double zsirtartalom;
 
-	public Tej(long vonalKod, int urtartalom, String gyarto, Date szavatossagiIdo, double zsirtartalom) {
+	public Tej(Long vonalKod, int urtartalom, String gyarto, Date szavatossagiIdo, double zsirtartalom) {
 		super(vonalKod, gyarto, szavatossagiIdo);
 		this.urtartalom = urtartalom;
 		this.zsirtartalom = zsirtartalom;
 	}
 
 	@Override
-	public long getVonalKod() {
+	public Long getVonalKod() {
 		return vonalKod;
 	}
 

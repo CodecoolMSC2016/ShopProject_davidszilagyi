@@ -9,11 +9,11 @@ public class TesterMain {
 	public static void main(String[] args) throws NemLetezoAruKivetel, TulSokLevonasKivetel, ParseException {
 		Tester tester = new Tester();
 		tester.addAru();
-		tester.vaneAru();
+		// tester.vaneAru();
 		tester.printAll();
 		// tester.torolAru(23456);
-		tester.vasarol(23456, 1000);
-		tester.feltoltArut(23456, 3);
-		tester.printAll();
+		// tester.vasarol(23456, 1000);
+		// tester.feltoltArut(23456, 3);
+		// tester.printAll();
 	}
 }

@@ -15,8 +15,8 @@ import bolt.kivetel.NemLetezoAruKivetel;
 public class Tester extends BoltFactory {
 	SimpleDateFormat sdf;
 	Bolt boltCC;
-	Hashtable<Class<? extends Aru>, BoltBejegyzes> pult;
-	Set<?> keys;
+	Hashtable<Long, BoltBejegyzes> pult;
+	Set<Long> keys;
 
 	public Tester() {
 		this.boltCC = new Bolt("CC", "Miskolc", "David");
@@ -40,20 +40,20 @@ public class Tester extends BoltFactory {
 		Sajt sajt2 = ujSajt(86543, 1.0, "Tolle", sdf.parse("2017/12/13"), 1.5);
 		Szappan szappan1 = ujSzappan(87654, "Fa", 'B');
 		Szappan szappan2 = ujAMosohatasuSzappan(76543, "Fa");
-		// boltCC.feltoltUjAruval(tej1, 5, 200);
+		boltCC.feltoltUjAruval(tej1, 5, 200);
 		boltCC.feltoltUjAruval(tej2, 2, 150);
-		// boltCC.feltoltUjAruval(tej3, 6, 250);
-		// boltCC.feltoltUjAruval(tej4, 1, 300);
-		// boltCC.feltoltUjAruval(tej5, 7, 200);
-		// boltCC.feltoltUjAruval(tej6, 3, 210);
-		// boltCC.feltoltUjAruval(tej7, 8, 220);
-		// boltCC.feltoltUjAruval(tej8, 9, 230);
-		// boltCC.feltoltUjAruval(tej9, 10, 240);
-		// boltCC.feltoltUjAruval(tej10, 4, 260);
-		// boltCC.feltoltUjAruval(sajt1, 2, 500);
+		boltCC.feltoltUjAruval(tej3, 6, 250);
+		boltCC.feltoltUjAruval(tej4, 1, 300);
+		boltCC.feltoltUjAruval(tej5, 7, 200);
+		boltCC.feltoltUjAruval(tej6, 3, 210);
+		boltCC.feltoltUjAruval(tej7, 8, 220);
+		boltCC.feltoltUjAruval(tej8, 9, 230);
+		boltCC.feltoltUjAruval(tej9, 10, 240);
+		boltCC.feltoltUjAruval(tej10, 4, 260);
+		boltCC.feltoltUjAruval(sajt1, 2, 500);
 		boltCC.feltoltUjAruval(sajt2, 3, 400);
 		boltCC.feltoltUjAruval(szappan1, 3, 300);
-		// boltCC.feltoltUjAruval(szappan2, 1, 200);
+		boltCC.feltoltUjAruval(szappan2, 1, 200);
 		System.out.println("Feltöltés kész!");
 	}
 
@@ -66,13 +66,13 @@ public class Tester extends BoltFactory {
 	}
 
 	public void printAll() {
-		for (Object key : keys) {
-			System.out.println(key);
+		for (Long key : keys) {
+			System.out.println(pult.get(key).getAru().getClass());
 			System.out.println(pult.get(key).getAru().toString());
 			System.out.println("Mennyiség: " + pult.get(key).getMennyiseg());
 			System.out.println("Ár: " + pult.get(key).getAr());
 			;
-			if (Elelmiszer.class.isAssignableFrom((Class<? extends Aru>) key)) {
+			if (Elelmiszer.class.isAssignableFrom(pult.get(key).getAru().getClass())) {
 				System.out.println("Jó még?: " + ((Elelmiszer) (pult.get(key).getAru())).joMeg());
 			}
 		}
@@ -89,11 +89,11 @@ public class Tester extends BoltFactory {
 		}
 	}
 
-	public void vasarol(long vonalKod, long mennyiseg) {
+	public void vasarol(Long vonalKod, long mennyiseg) {
 		boltCC.vasarolArut(vonalKod, mennyiseg);
 	}
 
-	public void feltoltArut(long vonalKod, long mennyiseg) {
+	public void feltoltArut(Long vonalKod, long mennyiseg) {
 		boltCC.feltoltAruval(vonalKod, mennyiseg);
 	}
 }

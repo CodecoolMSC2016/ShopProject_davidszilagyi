@@ -1,15 +1,15 @@
 package bolt;
 
 public abstract class Aru {
-	protected long vonalKod;
+	protected Long vonalKod;
 	protected String gyarto;
 
-	public Aru(long vonalKod, String gyarto) {
+	public Aru(Long vonalKod, String gyarto) {
 		this.vonalKod = vonalKod;
 		this.gyarto = gyarto;
 	}
 
-	public abstract long getVonalKod();
+	public abstract Long getVonalKod();
 
 	public abstract String getGyarto();
 

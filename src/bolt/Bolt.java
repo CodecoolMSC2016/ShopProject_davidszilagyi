@@ -4,6 +4,7 @@ import java.util.Hashtable;
 
 import bolt.aruk.Sajt;
 import bolt.aruk.Tej;
+import bolt.kivetel.LetezoVonalKodKivetel;
 import bolt.kivetel.NemLetezoAruKivetel;
 import bolt.kivetel.TulSokLevonasKivetel;
 
@@ -11,9 +12,9 @@ public class Bolt {
 	private String nev;
 	private String cim;
 	private String tulajdonos;
-	private Hashtable<Class<? extends Aru>, BoltBejegyzes> pult;
+	private Hashtable<Long, BoltBejegyzes> pult;
 
-	public Bolt(String nev, String cim, String tulajdonos, Hashtable<Class<? extends Aru>, BoltBejegyzes> pult) {
+	public Bolt(String nev, String cim, String tulajdonos, Hashtable<Long, BoltBejegyzes> pult) {
 		this.nev = nev;
 		this.cim = cim;
 		this.tulajdonos = tulajdonos;
@@ -24,7 +25,7 @@ public class Bolt {
 		this.nev = nev;
 		this.cim = cim;
 		this.tulajdonos = tulajdonos;
-		this.pult = new Hashtable<Class<? extends Aru>, BoltBejegyzes>();
+		this.pult = new Hashtable<Long, BoltBejegyzes>();
 	}
 
 	public String getNev() {
@@ -39,14 +40,14 @@ public class Bolt {
 		return tulajdonos;
 	}
 
-	public Hashtable<Class<? extends Aru>, BoltBejegyzes> getPult() {
+	public Hashtable<Long, BoltBejegyzes> getPult() {
 		return pult;
 	}
 
 	public boolean vanMegAdottAru(Class<?> c) {
 		try {
-			for (Class<? extends Aru> key : pult.keySet()) {
-				if (c.isAssignableFrom(key)) {
+			for (Long key : pult.keySet()) {
+				if (c.isAssignableFrom(pult.get(key).getAru().getClass())) {
 					return true;
 				}
 			}
@@ -58,8 +59,8 @@ public class Bolt {
 	}
 
 	public boolean vanMegTej() {
-		for (Class<? extends Aru> key : pult.keySet()) {
-			if (Tej.class.isAssignableFrom(key)) {
+		for (Long key : pult.keySet()) {
+			if (Tej.class.isAssignableFrom(pult.get(key).getAru().getClass())) {
 				return (pult.get(key).getMennyiseg()) > 0;
 			}
 		}
@@ -67,52 +68,66 @@ public class Bolt {
 	}
 
 	public boolean vanMegSajt() {
-		for (Class<? extends Aru> key : pult.keySet()) {
-			if (Sajt.class.isAssignableFrom(key)) {
+		for (Long key : pult.keySet()) {
+			if (Sajt.class.isAssignableFrom(pult.get(key).getAru().getClass())) {
 				return (pult.get(key).getMennyiseg()) > 0;
 			}
 		}
 		return false;
 	}
 
-	public void feltoltAruval(long vonalKod, long mennyiseg) {
-		for (Class<? extends Aru> key : pult.keySet()) {
-			BoltBejegyzes boltBejegyzes = pult.get(key);
-			if ((boltBejegyzes.getAru().getVonalKod()) == vonalKod) {
-				boltBejegyzes.adMennyiseg(mennyiseg);
+	public void feltoltAruval(Long vonalKod, long mennyiseg) {
+		for (Long key : pult.keySet()) {
+			if ((pult.get(key).getAru().getVonalKod()).equals(vonalKod)) {
+				pult.get(key).adMennyiseg(mennyiseg);
 			}
 		}
 	}
 
 	public void feltoltUjAruval(Aru a, long mennyiseg, long ar) {
-		BoltBejegyzes boltBejegyzes = new BoltBejegyzes(a, mennyiseg, ar);
-		pult.put(a.getClass(), boltBejegyzes);
+		try {
+			if (!letezoVonalKod(a.getVonalKod())) {
+				BoltBejegyzes boltBejegyzes = new BoltBejegyzes(a, mennyiseg, ar);
+				pult.put(boltBejegyzes.getAru().getVonalKod(), boltBejegyzes);
+			} else {
+				throw new LetezoVonalKodKivetel("Már van ilyen Vonalkód: " + a.getVonalKod());
+			}
+		} catch (Exception LetezoVonalKodKivetel) {
+			System.out.println(LetezoVonalKodKivetel.getMessage());
+		}
 	}
 
-	public void torolArut(long vonalKod) {
-		for (Class<? extends Aru> key : pult.keySet()) {
-			BoltBejegyzes boltBejegyzes = pult.get(key);
-			if ((boltBejegyzes.getAru().getVonalKod()) == vonalKod) {
+	public void torolArut(Long vonalKod) {
+		for (Long key : pult.keySet()) {
+			if ((pult.get(key).getAru().getVonalKod()).equals(vonalKod)) {
 				pult.remove(key);
 			}
 		}
 	}
 
-	public void vasarolArut(long vonalKod, long mennyiseg) {
+	public void vasarolArut(Long vonalKod, long mennyiseg) {
 		try {
-			for (Class<? extends Aru> key : pult.keySet()) {
-				BoltBejegyzes boltBejegyzes = pult.get(key);
-				if ((boltBejegyzes.getAru().getVonalKod()) == vonalKod) {
-					if (boltBejegyzes.getMennyiseg() < mennyiseg) {
+			for (Long key : pult.keySet()) {
+				if ((pult.get(key).getAru().getVonalKod()).equals(vonalKod)) {
+					if (pult.get(key).getMennyiseg() < mennyiseg) {
 						throw new TulSokLevonasKivetel("Nincs ennyi mennyiség!");
 					} else {
-						boltBejegyzes.levonMennyiseg(mennyiseg);
+						pult.get(key).levonMennyiseg(mennyiseg);
 					}
 				}
 			}
 		} catch (Exception TulSokLevonasKivetel) {
 			System.out.println(TulSokLevonasKivetel.getMessage());
 		}
+	}
+
+	public boolean letezoVonalKod(Long vonalKod) {
+		for (Long key : pult.keySet()) {
+			if ((pult.get(key).getAru().getVonalKod()).equals(vonalKod)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public class BoltBejegyzes {
