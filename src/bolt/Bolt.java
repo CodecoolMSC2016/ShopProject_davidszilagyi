@@ -51,9 +51,9 @@ public class Bolt {
 					return true;
 				}
 			}
-			throw new NemLetezoAruKivetel("Nem létező áru");
-		} catch (Exception NemLetezoAruKivetel) {
-			System.out.println(NemLetezoAruKivetel.getMessage());
+			throw new NemLetezoAruKivetel(String.format("Nem létező áru: ", c.getSimpleName()));
+		} catch (NemLetezoAruKivetel nlak) {
+			System.out.println(nlak.getMessage());
 			return false;
 		}
 	}
@@ -77,11 +77,20 @@ public class Bolt {
 	}
 
 	public void feltoltAruval(Long vonalKod, long mennyiseg) {
-		for (Long key : pult.keySet()) {
-			if ((pult.get(key).getAru().getVonalKod()).equals(vonalKod)) {
-				pult.get(key).adMennyiseg(mennyiseg);
+		try {
+			if (letezoVonalKod(vonalKod)) {
+				for (Long key : pult.keySet()) {
+					if ((pult.get(key).getAru().getVonalKod()).equals(vonalKod)) {
+						pult.get(key).adMennyiseg(mennyiseg);
+					}
+				}
+			} else {
+				throw new NemLetezoAruKivetel(String.format("Nincs ilyen vonalkóddal ellátott termék: %d", vonalKod));
 			}
+		} catch (NemLetezoAruKivetel nlak) {
+			System.out.println(nlak.getMessage());
 		}
+
 	}
 
 	public void feltoltUjAruval(Aru a, long mennyiseg, long ar) {
@@ -90,34 +99,51 @@ public class Bolt {
 				BoltBejegyzes boltBejegyzes = new BoltBejegyzes(a, mennyiseg, ar);
 				pult.put(boltBejegyzes.getAru().getVonalKod(), boltBejegyzes);
 			} else {
-				throw new LetezoVonalKodKivetel("Már van ilyen Vonalkód: " + a.getVonalKod());
+				throw new LetezoVonalKodKivetel(String.format("Már van ilyen vonalkód: ", a.getVonalKod()));
 			}
-		} catch (Exception LetezoVonalKodKivetel) {
-			System.out.println(LetezoVonalKodKivetel.getMessage());
+		} catch (LetezoVonalKodKivetel lvkk) {
+			System.out.println(lvkk.getMessage());
 		}
 	}
 
 	public void torolArut(Long vonalKod) {
-		for (Long key : pult.keySet()) {
-			if ((pult.get(key).getAru().getVonalKod()).equals(vonalKod)) {
-				pult.remove(key);
+		try {
+			if (letezoVonalKod(vonalKod)) {
+				for (Long key : pult.keySet()) {
+					if ((pult.get(key).getAru().getVonalKod()).equals(vonalKod)) {
+						pult.remove(key);
+						break;
+					}
+				}
+			} else {
+				throw new NemLetezoAruKivetel(String.format("Nincs ilyen vonalkóddal ellátott termék: %d", vonalKod));
 			}
+		} catch (NemLetezoAruKivetel nlak) {
+			System.out.println(nlak.getMessage());
 		}
 	}
 
 	public void vasarolArut(Long vonalKod, long mennyiseg) {
 		try {
-			for (Long key : pult.keySet()) {
-				if ((pult.get(key).getAru().getVonalKod()).equals(vonalKod)) {
-					if (pult.get(key).getMennyiseg() < mennyiseg) {
-						throw new TulSokLevonasKivetel("Nincs ennyi mennyiség!");
-					} else {
-						pult.get(key).levonMennyiseg(mennyiseg);
+			if (letezoVonalKod(vonalKod)) {
+				for (Long key : pult.keySet()) {
+					if ((pult.get(key).getAru().getVonalKod()).equals(vonalKod)) {
+						if (pult.get(key).getMennyiseg() < mennyiseg) {
+							throw new TulSokLevonasKivetel(
+									String.format("Nincs ennyi mennyiség: %s (Vonalkód: %d - Készleten: %s)", mennyiseg,
+											vonalKod, pult.get(key).getMennyiseg()));
+						} else {
+							pult.get(key).levonMennyiseg(mennyiseg);
+						}
 					}
 				}
+			} else {
+				throw new NemLetezoAruKivetel(String.format("Nincs ilyen vonalkóddal ellátott termék: %d", vonalKod));
 			}
-		} catch (Exception TulSokLevonasKivetel) {
-			System.out.println(TulSokLevonasKivetel.getMessage());
+		} catch (TulSokLevonasKivetel tslk) {
+			System.out.println(tslk.getMessage());
+		} catch (NemLetezoAruKivetel nlak) {
+			System.out.println(nlak.getMessage());
 		}
 	}
 

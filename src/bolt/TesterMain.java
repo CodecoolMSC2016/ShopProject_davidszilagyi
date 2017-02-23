@@ -10,10 +10,10 @@ public class TesterMain {
 		Tester tester = new Tester();
 		tester.addAru();
 		// tester.vaneAru();
-		tester.printAll();
-		// tester.torolAru(23456);
-		// tester.vasarol(23456, 1000);
-		// tester.feltoltArut(23456, 3);
+		// tester.printAll();
+		tester.torolAru((long) 23456);
+		// tester.vasarol((long) 23456, 1000);
+		// tester.feltoltArut((long) 23456, 3);
 		// tester.printAll();
 	}
 }

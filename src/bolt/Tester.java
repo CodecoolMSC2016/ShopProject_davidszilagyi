@@ -78,7 +78,7 @@ public class Tester extends BoltFactory {
 		}
 	}
 
-	public void torolAru(long vonalKod) throws NemLetezoAruKivetel {
+	public void torolAru(Long vonalKod) throws NemLetezoAruKivetel {
 		boltCC.torolArut(vonalKod);
 		if (!boltCC.vanMegTej()) {
 			System.out.println("Tej törölve");
