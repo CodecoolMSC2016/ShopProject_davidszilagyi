@@ -1,7 +1,7 @@
 package bolt;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Hashtable;
 import java.util.Set;
 
@@ -11,7 +11,6 @@ import bolt.aruk.Sajt;
 import bolt.aruk.Szappan;
 import bolt.aruk.Tej;
 import bolt.kivetel.NemLetezoAruKivetel;
-import bolt.kivetel.TulSokLevonasKivetel;
 
 public class Tester extends BoltFactory {
 	SimpleDateFormat sdf;
@@ -23,21 +22,22 @@ public class Tester extends BoltFactory {
 		this.boltCC = new Bolt("CC", "Miskolc", "David");
 		this.pult = boltCC.getPult();
 		this.keys = pult.keySet();
+		this.sdf = new SimpleDateFormat("yyyy/MM/dd");
 	}
 
-	public void addAru() {
-		Tej tej1 = ujTartosTej(12345, 2, "Mizo", new Date("2017/05/14"), 1.0);
-		Tej tej2 = ujFeltartosTej(23456, 2, "Mizo", new Date("2017/04/01"), 1.0);
-		Tej tej3 = ujFelzsirosFeltartosTej(34567, 1, "Mizo", new Date("2017/03/25"));
-		Tej tej4 = ujFelzsirosLiteresFeltartosTej(45678, "Mizo", new Date("2017/02/14"));
-		Tej tej5 = ujFelzsirosLiteresTartosTej(56789, "Mizo", new Date("2017/03/01"));
-		Tej tej6 = ujFelzsirosTartosTej(13456, 2, "Mizo", new Date("2017/02/02"));
-		Tej tej7 = ujZsirosFeltartosTej(24567, 1, "Mizo", new Date("2017/02/02"));
-		Tej tej8 = ujZsirosLiteresFeltartosTej(46789, "Mizo", new Date("2017/03/05"));
-		Tej tej9 = ujZsirosLiteresTartosTej(57891, "Mizo", new Date("2017/03/02"));
-		Tej tej10 = ujZsirosTartosTej(68912, 1, "Mizo", new Date("2017/04/27"));
-		Sajt sajt1 = ujSajt(98765, 1.5, "Tolle", new Date("2017/02/20"), 1.0);
-		Sajt sajt2 = ujSajt(86543, 1.0, "Tolle", new Date("2017/12/13"), 1.5);
+	public void addAru() throws ParseException {
+		Tej tej1 = ujTartosTej(12345, 2, "Mizo", sdf.parse("2017/05/14"), 1.0);
+		Tej tej2 = ujFeltartosTej(23456, 2, "Mizo", sdf.parse("2017/04/01"), 1.0);
+		Tej tej3 = ujFelzsirosFeltartosTej(34567, 1, "Mizo", sdf.parse("2017/03/25"));
+		Tej tej4 = ujFelzsirosLiteresFeltartosTej(45678, "Mizo", sdf.parse("2017/02/14"));
+		Tej tej5 = ujFelzsirosLiteresTartosTej(56789, "Mizo", sdf.parse("2017/03/01"));
+		Tej tej6 = ujFelzsirosTartosTej(13456, 2, "Mizo", sdf.parse("2017/02/02"));
+		Tej tej7 = ujZsirosFeltartosTej(24567, 1, "Mizo", sdf.parse("2017/02/02"));
+		Tej tej8 = ujZsirosLiteresFeltartosTej(46789, "Mizo", sdf.parse("2017/03/05"));
+		Tej tej9 = ujZsirosLiteresTartosTej(57891, "Mizo", sdf.parse("2017/03/02"));
+		Tej tej10 = ujZsirosTartosTej(68912, 1, "Mizo", sdf.parse("2017/04/27"));
+		Sajt sajt1 = ujSajt(98765, 1.5, "Tolle", sdf.parse("2017/02/20"), 1.0);
+		Sajt sajt2 = ujSajt(86543, 1.0, "Tolle", sdf.parse("2017/12/13"), 1.5);
 		Szappan szappan1 = ujSzappan(87654, "Fa", 'B');
 		Szappan szappan2 = ujAMosohatasuSzappan(76543, "Fa");
 		// boltCC.feltoltUjAruval(tej1, 5, 200);

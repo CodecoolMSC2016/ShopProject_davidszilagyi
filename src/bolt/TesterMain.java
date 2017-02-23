@@ -1,10 +1,12 @@
 package bolt;
 
+import java.text.ParseException;
+
 import bolt.kivetel.NemLetezoAruKivetel;
 import bolt.kivetel.TulSokLevonasKivetel;
 
 public class TesterMain {
-	public static void main(String[] args) throws NemLetezoAruKivetel, TulSokLevonasKivetel {
+	public static void main(String[] args) throws NemLetezoAruKivetel, TulSokLevonasKivetel, ParseException {
 		Tester tester = new Tester();
 		tester.addAru();
 		tester.vaneAru();
