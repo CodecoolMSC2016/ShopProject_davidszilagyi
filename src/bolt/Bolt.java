@@ -4,7 +4,7 @@ import java.util.Hashtable;
 
 import bolt.aruk.Sajt;
 import bolt.aruk.Tej;
-import bolt.kivetel.LetezoVonalKodKivetel;
+import bolt.kivetel.EgyezoVonalKodKivetel;
 import bolt.kivetel.NemLetezoAruKivetel;
 import bolt.kivetel.TulSokLevonasKivetel;
 
@@ -78,7 +78,7 @@ public class Bolt {
 
 	public void feltoltAruval(Long vonalKod, long mennyiseg) {
 		try {
-			if (letezoVonalKod(vonalKod)) {
+			if (pult.containsKey(vonalKod)) {
 				pult.get(vonalKod).adMennyiseg(mennyiseg);
 			} else {
 				throw new NemLetezoAruKivetel(String.format("Nincs ilyen vonalkóddal ellátott termék: %d", vonalKod));
@@ -91,20 +91,20 @@ public class Bolt {
 
 	public void feltoltUjAruval(Aru a, long mennyiseg, long ar) {
 		try {
-			if (!letezoVonalKod(a.getVonalKod())) {
+			if (!pult.containsKey(a.getVonalKod())) {
 				BoltBejegyzes boltBejegyzes = new BoltBejegyzes(a, mennyiseg, ar);
 				pult.put(boltBejegyzes.getAru().getVonalKod(), boltBejegyzes);
 			} else {
-				throw new LetezoVonalKodKivetel(String.format("Már van ilyen vonalkód: ", a.getVonalKod()));
+				throw new EgyezoVonalKodKivetel(String.format("Már van ilyen vonalkód: %d", a.getVonalKod()));
 			}
-		} catch (LetezoVonalKodKivetel lvkk) {
-			System.out.println(lvkk.getMessage());
+		} catch (EgyezoVonalKodKivetel evkk) {
+			System.out.println(evkk.getMessage());
 		}
 	}
 
 	public void torolArut(Long vonalKod) {
 		try {
-			if (letezoVonalKod(vonalKod)) {
+			if (pult.containsKey(vonalKod)) {
 				pult.remove(vonalKod);
 			} else {
 				throw new NemLetezoAruKivetel(String.format("Nincs ilyen vonalkóddal ellátott termék: %d", vonalKod));
@@ -116,7 +116,7 @@ public class Bolt {
 
 	public void vasarolArut(Long vonalKod, long mennyiseg) {
 		try {
-			if (letezoVonalKod(vonalKod)) {
+			if (pult.containsKey(vonalKod)) {
 				if (pult.get(vonalKod).getMennyiseg() < mennyiseg) {
 					throw new TulSokLevonasKivetel(
 							String.format("Nincs ennyi mennyiség: %s (Vonalkód: %d - Készleten: %s)", mennyiseg,
@@ -132,15 +132,6 @@ public class Bolt {
 		} catch (NemLetezoAruKivetel nlak) {
 			System.out.println(nlak.getMessage());
 		}
-	}
-
-	public boolean letezoVonalKod(Long vonalKod) {
-		for (Long key : pult.keySet()) {
-			if ((pult.get(key).getAru().getVonalKod()).equals(vonalKod)) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	public class BoltBejegyzes {
