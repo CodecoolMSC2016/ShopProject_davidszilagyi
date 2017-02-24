@@ -56,7 +56,7 @@ public class Tester {
 			System.out.println("Feltöltés kész!");
 		}
 
-		public void vaneAru() throws NemLetezoAruKivetel {
+		public void vaneAru() {
 			System.out.println("Tej " + boltCC.vanMegTej());
 			System.out.println("Sajt " + boltCC.vanMegSajt());
 			System.out.println("Tej.class " + boltCC.vanMegAdottAru(Tej.class));
@@ -77,7 +77,7 @@ public class Tester {
 			}
 		}
 
-		public void torolAru(Long vonalKod) throws NemLetezoAruKivetel {
+		public void torolAru(Long vonalKod) {
 			boltCC.torolArut(vonalKod);
 			if (!boltCC.vanMegTej()) {
 				System.out.println("Tej törölve");
