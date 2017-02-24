@@ -19,8 +19,8 @@ public class Tester {
 		tests.addAru();
 		// tests.vaneAru();
 		// tests.printAll();
-		// tests.torolAru((long) 23456);
-		tests.vasarol((long) 23456, 1);
+		tests.torolAru((long) 234561);
+		// tests.vasarol((long) 23456, 1);
 		// tests.feltoltArut((long) 23456, 3);
 		// tests.printAll();
 	}
@@ -79,13 +79,6 @@ public class Tester {
 
 		public void torolAru(Long vonalKod) {
 			boltCC.torolArut(vonalKod);
-			if (!boltCC.vanMegTej()) {
-				System.out.println("Tej törölve");
-			} else if (!boltCC.vanMegSajt()) {
-				System.out.println("Sajt törölve");
-			} else if (!boltCC.vanMegAdottAru(Szappan.class)) {
-				System.out.println("Szappan törölve");
-			}
 		}
 
 		public void vasarol(Long vonalKod, long mennyiseg) {

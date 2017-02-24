@@ -106,6 +106,7 @@ public class Bolt {
 		try {
 			if (pult.containsKey(vonalKod)) {
 				pult.remove(vonalKod);
+				System.out.println(String.format("%d vonalkódú termék törölve!", vonalKod));
 			} else {
 				throw new NemLetezoAruKivetel(String.format("Nincs ilyen vonalkóddal ellátott termék: %d", vonalKod));
 			}
